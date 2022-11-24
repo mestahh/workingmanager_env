@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:10.10.2
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      MARIADB_USER: "secret"
+      MARIADB_PASSWORD: "secret"
+      MARIADB_ROOT_PASSWORD: "secret"
+    ports:
+      - "3306:3306"
+  tomcat:
+    image: bitnami/tomcat:8.5.84
+    environment:
+      TOMCAT_PASSWORD: "verysecret"
+    volumes:
+      - ./tomcat-data:/bitnami
+    ports:
+      - "8080:8080"
